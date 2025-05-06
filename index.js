@@ -18,17 +18,18 @@ app.post('/api/feedback', async (req, res) => {
   const { goal, preconditions } = req.body;
 
   const prompt = `
-You are an expert in Theory of Change.
-Goal: "${goal}"
+You are a Theory of Change expert. Analyze the logic of the following outcome map.
+
+End goal: "${goal}"
 Preconditions: ${preconditions.map(p => `"${p}"`).join(', ')}
 
-Provide feedback on:
-- Gaps in the logic or causal flow
-- Systemic barriers
-- Missing intangible needs (trust, awareness, equity)
-- Potential assumptions the user may be making
+Provide feedback on the following:
+- Logical gaps in the preconditions
+- Systemic barriers that may block progress
+- Missing intangible factors (e.g., trust, awareness, equity)
+- Unstated assumptions
 
-Keep your response short and sweet. No yapping. 
+Respond only in plain text. Do not address the user, do not explain what you're doing, and do not use bold text or any formatting. Keep the response concise and direct.
 `;
 
   try {
